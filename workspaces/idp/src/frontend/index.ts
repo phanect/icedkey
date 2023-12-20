@@ -21,9 +21,9 @@ async function login(code) {
       method: "POST",
       mode: "cors",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
-      body: JSON.stringify({ code })
+      body: JSON.stringify({ code }),
     });
 
     const result = await response.json();
@@ -36,8 +36,8 @@ async function login(code) {
     const getUserResponse = await fetch("https://api.github.com/user", {
       headers: {
         accept: "application/vnd.github.v3+json",
-        authorization: `token ${result.token}`
-      }
+        authorization: `token ${result.token}`,
+      },
     });
     const { login } = await getUserResponse.json();
     $login.textContent = login;
@@ -47,3 +47,6 @@ async function login(code) {
     location.reload();
   }
 }
+
+// Required to support top-level await
+export {};
