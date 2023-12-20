@@ -7,14 +7,6 @@ const client_id = CLIENT_ID;
 const client_secret = CLIENT_SECRET;
 
 async function handle(request) {
-  // redirect GET requests to the OAuth login page on github.com
-  if (request.method === "GET") {
-    return Response.redirect(
-      `https://github.com/login/oauth/authorize?client_id=${client_id}`,
-      302
-    );
-  }
-
   try {
     const { code } = await request.json();
 
