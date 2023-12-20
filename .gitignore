@@ -1,0 +1,49 @@
+#
+# Project-Specific
+#
+
+# Built files
+dist/
+
+#
+# System
+#
+
+# Logs
+logs/
+*.log
+
+# PIDs
+*.pid
+*.seed
+*.pid.lock
+pids
+
+# File manager configs
+.directory
+Thumbs.db
+.DS_Store
+
+#
+# JavaScript
+#
+
+# NPM / Yarn
+node_modules/
+.npm/
+.yarn-integrity
+
+# This repository use npm as a dependency manager
+yarn.lock
+pnpm-lock.yaml
+
+# lock files should not be generated under directories of each packages
+/workspaces/**/package-lock.json
+
+# Cloudflare / Wrangler
+.wrangler
+.dev.vars
+
+# Others
+.node_repl_history
+.eslintcache
