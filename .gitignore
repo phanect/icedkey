@@ -35,12 +35,12 @@ node_modules/
 .npm/
 .yarn-integrity
 
-# This repository use npm as a dependency manager
+# This repository use pnpm as a dependency manager
+package-lock.json
 yarn.lock
-pnpm-lock.yaml
 
 # lock files should not be generated under directories of each packages
-/workspaces/**/package-lock.json
+/workspaces/**/pnpm-lock.yaml
 
 # Cloudflare / Wrangler
 .wrangler

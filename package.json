@@ -6,9 +6,6 @@
   "contributors": [ "Gregor Martynus (https://twitter.com/gr2m)" ],
   "license": "MIT",
   "type": "module",
-  "workspaces": [
-    "workspaces/*"
-  ],
   "scripts": {
     "lint": "tsc --noEmit && eslint --ext=.js,.jsx,.ts,.tsx,.json .",
     "release": "lerna run release"
