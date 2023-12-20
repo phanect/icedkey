@@ -1,5 +1,5 @@
 {
-  "name": "@icedkeys/idp",
+  "name": "@icedkey/idp",
   "version": "0.0.1",
   "description": "An authentication & authorization server runs on WinterCG-compatible infrastructures",
   "author": "Jumpei Ogawa (https://phanective.org)",
