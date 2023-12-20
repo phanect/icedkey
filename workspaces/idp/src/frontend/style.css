@@ -1,0 +1,19 @@
+* {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-align: center;
+}
+h1 small {
+  display: block;
+  font-size: 1rem;
+}
+h2 {
+  margin-top: 10rem;
+}
+p {
+  display: none;
+}
+[data-state="signed-out"] #signed-out,
+[data-state="signed-in"] #signed-in,
+[data-state="loading"] #loading {
+  display: block;
+}
