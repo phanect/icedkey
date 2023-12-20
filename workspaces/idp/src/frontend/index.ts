@@ -22,7 +22,7 @@ if (code) {
   document.body.dataset.state = "loading";
 
   try {
-    const response = await fetch(WORKER_URL, {
+    const response = await fetch(`${WORKER_URL}/api/github`, {
       method: "POST",
       mode: "cors",
       headers: {
