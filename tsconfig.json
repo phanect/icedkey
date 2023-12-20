@@ -13,7 +13,8 @@
     "strict": true
   },
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "**/dist",
