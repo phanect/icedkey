@@ -7,6 +7,9 @@
   "author": "Gregor Martynus (https://twitter.com/gr2m)",
   "license": "MIT",
   "repository": "github:gr2m/cloudflare-worker-github-oauth-login",
+  "workspaces": [
+    "workspaces/*"
+  ],
   "release": {
     "branches": [
       "main"
