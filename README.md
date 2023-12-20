@@ -2,6 +2,8 @@
 
 An authentication server for WinterCG-compatible infrastructures
 
+![](./assets/icedkey.320.png)
+
 ## Credits
 
 This repository uses the code from the following repositories and Gist:
