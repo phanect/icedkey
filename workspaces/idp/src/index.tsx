@@ -72,9 +72,19 @@ app.get("/", (c) => c.render(
   </>
 ));
 
+type GitHubLoginResponse = {
+  access_token: string,
+  error?: string, // TODO check if `error` is really string
+};
+
 app.post("/api/github", async (c) => {
+  if (!c.env.GITHUB_CLIENT_ID || !c.env.GITHUB_CLIENT_SECRET) {
+    c.text("Login with GitHub is not supported on this identity server", 404);
+    return;
+  }
+
   try {
-    const { code } = await request.json();
+    const { code } = await c.req.json();
 
     const response = await fetch(
       "https://github.com/login/oauth/access_token",
@@ -85,27 +95,27 @@ app.post("/api/github", async (c) => {
           "user-agent": "cloudflare-worker-github-oauth-login-demo",
           accept: "application/json",
         },
-        body: JSON.stringify({ client_id, client_secret, code }),
+        body: JSON.stringify({
+          client_id: c.env.GITHUB_CLIENT_ID,
+          client_secret: c.env.GITHUB_CLIENT_SECRET,
+          code,
+        }),
       }
     );
-    const result = await response.json();
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-    };
+    const result = await response.json() as GitHubLoginResponse;
 
-    if (result.error) {
-      return new Response(JSON.stringify(result), { status: 401, headers });
-    }
+    c.header("Access-Control-Allow-Origin", "*");
 
-    return new Response(JSON.stringify({ token: result.access_token }), {
-      status: 201,
-      headers,
-    });
+    return result.error ?
+      c.json(result, 401) :
+      c.json({ token: result.access_token }, 201);
   } catch (error) {
     console.error(error);
-    return new Response(error.message, {
-      status: 500,
-    });
+    if (error instanceof Error) {
+      return c.text(error.message, 500);
+    } else {
+      return c.text("We're sorry, something technically wrong. This is a bug of IcedKey. Error code: 731", 500);
+    }
   }
 });
 
