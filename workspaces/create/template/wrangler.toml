@@ -1,0 +1,6 @@
+name = "icedkey-instance"
+type = "typescript"
+zone_id = "%CLOUDFLARE_ZONE_ID%"
+account_id = "%CLOUDFLARE_ACCOUNT_ID%"
+workers_dev = false
+route = ""
