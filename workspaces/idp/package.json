@@ -1,0 +1,34 @@
+{
+  "name": "@icedkeys/idp",
+  "version": "0.0.1",
+  "description": "An authentication & authorization server runs on WinterCG-compatible infrastructures",
+  "author": "Jumpei Ogawa (https://phanective.org)",
+  "contributors": [ "Gregor Martynus (https://twitter.com/gr2m)" ],
+  "license": "MIT",
+  "keywords": [
+    "cloudflare-workers",
+    "wintercg",
+    "authentication",
+    "oauth",
+    "openid",
+    "openid-connect",
+    "google",
+    "github"
+  ],
+  "homepage": "https://github.com/phanect/icedkey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phanect/icedkey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phanect/icedkey/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "release": "npm publish --access public --non-interactive"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9.x"
+  }
+}
