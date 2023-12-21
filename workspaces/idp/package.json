@@ -24,6 +24,9 @@
     "url": "https://github.com/phanect/icedkey/issues"
   },
   "type": "module",
+  "bin": {
+    "icedkey": "./dist/bin/cli.mjs"
+  },
   "main": "./dist/configurator/configurator.cjs",
   "module": "./dist/configurator/configurator.js",
   "types": "./dist/configurator/types/index.d.ts",
@@ -37,18 +40,27 @@
     }
   },
   "scripts": {
-    "build": "vite build",
+    "build": "npm run build:bin && npm run build:configurator",
+    "build:bin": "unbuild",
+    "build:configurator": "vite build",
+    "test": "esno ./src/bin/cli.ts dev",
     "release": "npm publish --access public --non-interactive"
   },
   "dependencies": {
-    "hono": "^3.11.8"
+    "hono": "^3.11.8",
+    "minimist": "^1.2.8",
+    "shescape": "^2.0.2",
+    "vite": "^5.0.10"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231121.0",
     "@hono/vite-cloudflare-pages": "^0.1.2",
     "@hono/vite-dev-server": "^0.3.1",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^20.10.5",
+    "esno": "^4.0.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
+    "unbuild": "^2.0.0",
     "vite-plugin-dts": "^3.6.4",
     "wrangler": "^3.21.0"
   },

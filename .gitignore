@@ -5,6 +5,8 @@
 # Built files
 dist/
 
+# User-provided assets
+/workspaces/idp/src/user-assets/
 #
 # System
 #
