@@ -47,6 +47,7 @@
     "release": "npm publish --access public --non-interactive"
   },
   "dependencies": {
+    "googleapis": "^129.0.0",
     "hono": "^3.11.8",
     "minimist": "^1.2.8",
     "shescape": "^2.0.2",
