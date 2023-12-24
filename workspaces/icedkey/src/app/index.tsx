@@ -24,4 +24,35 @@ app.onError((err, c) => {
   );
 });
 
+app.get("/", (c) => c.render(
+  <>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+          Login with GitHub – A Cloudflare Worker + GitHub Pages Login Example
+        </title>
+        <link rel="stylesheet" href="./frontend/style.css" />
+        <script src="./frontend/index.ts" defer></script>
+      </head>
+      <body data-state="signed-out">
+        <h1>
+          Login with GitHub
+          <small>A Cloudflare Worker + GitHub Pages Login Example</small>
+        </h1>
+        <p id="signed-out">
+          <a href="https://github-oauth-login.gr2m.workers.dev">Login with GitHub</a>
+        </p>
+        <p id="signed-in">
+          Hello there, <span id="login"></span>. (<a href=".">Logout</a>)
+        </p>
+        <p id="loading">
+          Loading...
+        </p>
+      </body>
+    </html>
+  </>
+));
+
 export default app;
