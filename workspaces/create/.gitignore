@@ -1,0 +1,6 @@
+#
+# Project-specific
+#
+
+# tsconfig.json is copied from project root
+/template/tsconfig.json

@@ -1,0 +1,24 @@
+{
+  "name": "%PACKAGE_NAME%",
+  "version": "0.0.1",
+  "description": "An IcedKey instance",
+  "author": "%AUTHOR%",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "icedkey dev",
+    "build": "icedkey build",
+    "deploy": "npm run build && wrangler pages deploy dist && icedkey postdeploy"
+  },
+  "dependencies": {
+    "icedkey": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9.x"
+  }
+}

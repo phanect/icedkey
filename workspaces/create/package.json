@@ -1,0 +1,26 @@
+{
+  "name": "@icedkey/create",
+  "version": "0.0.1",
+  "description": "Create IcedKey instance",
+  "author": "Jumpei Ogawa (https://phanective.org)",
+  "license": "CC0-1.0",
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "cloudflare workers",
+    "google",
+    "oauth"
+  ],
+  "repository": "https://github.com/phanect/icedkey",
+  "type": "module",
+  "scripts": {
+    "release": "npm run publish --access public --non-interactive"
+  },
+  "dependencies": {
+    "icedkey": "0.0.1"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9.x"
+  }
+}
