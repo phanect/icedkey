@@ -1,15 +1,23 @@
 {
-  "name": "cloudflare-worker-github-oauth-login",
-  "version": "1.0.0",
+  "name": "icedkey",
+  "version": "0.0.1",
   "private": true,
-  "description": "A Cloudflare Worker + GitHub Pages Login Example",
-  "main": "github-oauth-login.js",
-  "author": "Gregor Martynus (https://twitter.com/gr2m)",
+  "author": "Jumpei Ogawa (https://phanective.org)",
+  "contributors": [
+    "Gregor Martynus (https://twitter.com/gr2m)"
+  ],
   "license": "MIT",
-  "repository": "github:gr2m/cloudflare-worker-github-oauth-login",
+  "type": "module",
   "workspaces": [
     "workspaces/*"
   ],
+  "scripts": {
+    "release": "lerna run release"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9.x"
+  },
   "release": {
     "branches": [
       "main"
