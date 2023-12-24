@@ -49,8 +49,11 @@ That should be it. The `github-oauth-login.js` file will now be continously depl
 
 ## Credits
 
-The OAuth App Avatar and this repository's social preview are using [@cameronmcefee](https://github.com/cameronmcefee)'s [cloud](https://octodex.github.com/cloud/) Octodex graphic :octocat:💖
+This repository uses the code from the following repositories and Gist:
+
+- https://github.com/gr2m/cloudflare-worker-github-oauth-login (ISC)
+- https://github.com/geolonia/opendata-editor (MIT)
 
 ## License
 
-[ISC](LICENSE)
+[MIT](LICENSE)

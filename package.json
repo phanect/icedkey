@@ -5,7 +5,7 @@
   "description": "A Cloudflare Worker + GitHub Pages Login Example",
   "main": "github-oauth-login.js",
   "author": "Gregor Martynus (https://twitter.com/gr2m)",
-  "license": "ISC",
+  "license": "MIT",
   "repository": "github:gr2m/cloudflare-worker-github-oauth-login",
   "release": {
     "branches": [
