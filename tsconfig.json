@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "lib": [ "esnext" ],
+    "newLine": "lf",
+    "target": "esnext",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/dist",
+    "**/node_modules"
+  ]
+}
