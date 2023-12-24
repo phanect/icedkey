@@ -4,17 +4,29 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "declaration": true,
-    "lib": [ "esnext" ],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "newLine": "lf",
     "target": "esnext",
     "preserveConstEnums": true,
     "removeComments": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+
+    // Configs for IcedKey apps
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "types": [
+      "@cloudflare/workers-types",
+      "vite/client"
+    ]
   },
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "**/dist",
