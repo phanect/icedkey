@@ -15,6 +15,11 @@ module.exports = {
     project: join(__dirname, "./tsconfig.json"),
   },
   overrides: [
+    {
+      files: [ "workspaces/icedkey/**/*" ],
+      extends: [ "plugin:drizzle/recommended" ],
+      plugins: [ "drizzle" ],
+    },
     // TODO configure in eslint-config-phanective
     {
       files: [ "**/*.cjs" ],
