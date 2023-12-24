@@ -24,6 +24,9 @@ updates:
           - "minor"
           - "patch"
 
+    # Temporarily disable version updates
+    open-pull-requests-limit: 0
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -39,3 +42,6 @@ updates:
         applies-to: "version-updates"
         patterns:
           - "*"
+
+    # Temporarily disable version updates
+    open-pull-requests-limit: 0

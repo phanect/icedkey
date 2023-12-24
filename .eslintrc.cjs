@@ -45,5 +45,12 @@ module.exports = {
         "node/shebang": "off",
       },
     },
+    {
+      files: [ "**/*.test.js", "**/*.test.cjs", "**/*.test.mjs" ],
+      extends: "phanective/jest",
+      parserOptions: {
+        project: join(__dirname, "./test/tsconfig.json"),
+      },
+    },
   ],
 };
