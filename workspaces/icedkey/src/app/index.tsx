@@ -92,7 +92,7 @@ app.post("/api/github", async (c) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          "user-agent": "cloudflare-worker-github-oauth-login-demo",
+          "user-agent": "IcedKey",
           accept: "application/json",
         },
         body: JSON.stringify({
