@@ -7,17 +7,6 @@ const client_id = CLIENT_ID;
 const client_secret = CLIENT_SECRET;
 
 async function handle(request) {
-  // handle CORS pre-flight request
-  if (request.method === "OPTIONS") {
-    return new Response(null, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    });
-  }
-
   // redirect GET requests to the OAuth login page on github.com
   if (request.method === "GET") {
     return Response.redirect(

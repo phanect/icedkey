@@ -24,6 +24,15 @@ app.onError((err, c) => {
   );
 });
 
+// CORS pre-flight request
+app.options("*", (c) => {
+  c.header("Access-Control-Allow-Origin", "*");
+  c.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  c.header("Access-Control-Allow-Headers", "Content-Type");
+  c.status(204);
+  return c.body("");
+});
+
 app.get("/", (c) => c.render(
   <>
     <html lang="en">
