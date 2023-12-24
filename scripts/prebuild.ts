@@ -16,4 +16,7 @@ const tsconfig = originalTsconfig as RecursivePartial<typeof originalTsconfig> ;
 delete tsconfig.compilerOptions?.baseUrl;
 delete tsconfig.compilerOptions?.paths;
 
-await writeFile(join(__dirname, "../workspaces/icedkey/tsconfig.json"), JSON.stringify(tsconfig, null, 2));
+await Promise.all([
+  writeFile(join(__dirname, "../workspaces/create/template/tsconfig.json"), JSON.stringify(tsconfig, null, 2)),
+  writeFile(join(__dirname, "../workspaces/icedkey/tsconfig.json"), JSON.stringify(tsconfig, null, 2)),
+]);

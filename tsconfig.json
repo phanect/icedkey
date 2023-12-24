@@ -22,7 +22,13 @@
     "types": [
       "@cloudflare/workers-types",
       "vite/client"
-    ]
+    ],
+
+    // Required to call local packages from another one
+    "baseUrl": ".",
+    "paths": {
+      "icedkey": [ "./workspaces/icedkey/src/configurator/configurator" ]
+    },
   },
   "include": [
     "**/*.ts",
