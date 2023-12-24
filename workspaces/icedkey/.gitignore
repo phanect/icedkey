@@ -5,6 +5,9 @@
 # tsconfig.json copied from the project root
 /tsconfig.json
 
+# User-provided assets
+/src/app/user-assets/
+
 #
 # Cloudflare / Wrangler
 #
