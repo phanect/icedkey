@@ -1,4 +1,4 @@
-# IcedKeys
+# IcedKey
 
 An authentication server for WinterCG-compatible infrastructures
 
