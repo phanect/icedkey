@@ -47,6 +47,7 @@
     "build:bin": "unbuild",
     "build:configurator": "vite build",
     "test": "esno ./src/bin/cli.ts build",
+    "deploy": "npm run build && wrangler pages deploy dist",
     "release": "npm publish --access public --non-interactive"
   },
   "dependencies": {

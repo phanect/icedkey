@@ -1,0 +1,12 @@
+Google ログインの SPA とのやり取りの方法の確認
+https://www.docswell.com/s/ockeghem/ZM6VNK-phpconf2021-spa-security
+
+バックエンドから認証する場合
+
+wrangler.toml をビルド時に自動生成
+(wrangler.toml がある場合は icedkey build と icedkey dev の際に警告)
+
+Stable Diffusion で生成した画像をプロプライエタリーアセットとしてリポジトリーから分離する
+
+このリポジトリーを公開したら、https://github.com/phanect/icedkey/settings/security_analysis で CodeQL analysis の Pull request check failure を Any / Errors and warnings に設定する
+Secret Scanning の Push protection も有効にする

@@ -1,3 +1,4 @@
+# auto generate wrangler.toml by `icedkey build`?
 name = "icedkey-instance"
 compatibility_date = "2023-12-18"
 account_id = "6c6da1080173b4e8512770e8f9309068"
