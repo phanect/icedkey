@@ -3,6 +3,8 @@ import { Hono } from "hono";
 type HonoEnv = {
   GITHUB_CLIENT_ID: string,
   GITHUB_CLIENT_SECRET: string,
+
+  d1: D1Database,
 };
 
 const app = new Hono<{ Bindings: HonoEnv }>();
