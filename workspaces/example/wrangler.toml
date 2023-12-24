@@ -5,3 +5,8 @@ zone_id = "247a635bf5a6091a2667ed8c2fa082ec"
 workers_dev = false
 type = "typescript"
 route = { pattern = "icedkey-demo.phanective.org/*", custom_domain = true }
+
+[[d1_databases]]
+binding = "d1"
+database_name = "icedkey-demo"
+database_id = "f9b6527b-7535-4b95-9635-26e070178386"
