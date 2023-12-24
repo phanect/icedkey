@@ -1,0 +1,12 @@
+#
+# Project-Specific
+#
+
+# tsconfig.json copied from the project root
+/tsconfig.json
+
+#
+# Cloudflare / Wrangler
+#
+.wrangler
+.dev.vars
