@@ -14,6 +14,10 @@ import type { IcedKeyOptions } from "../types";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
+async function createD1(): Promise<void> {
+  // TODO Cloudflare 上に D1 インスタンス作成する。その後テーブル作成する。(必要だっけ? → 必要だった https://www.javadrive.jp/sqlite/table/index1.html)
+}
+
 const { _: [ subCommand ] } = minimist(process.argv.slice(2));
 const projectRoot = cwd();
 const userAssetsDir = join(__dirname, "../src/user-assets");
@@ -133,6 +137,9 @@ if (subCommand === "dev") {
   if (!google?.serviceAccountJsonPath) {
     process.exit(0);
   }
+
+  console.info("Creating D1 database instance on your Cloudflare account...");
+  await createD1();
 
   console.info("Uploading credentials of Google as a secrets...");
 
