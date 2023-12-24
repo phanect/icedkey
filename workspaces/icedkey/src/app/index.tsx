@@ -1,6 +1,10 @@
 import { Hono } from "hono";
+import { google } from "googleapis";
 
 type HonoEnv = {
+  GOOGLE_CLIENT_ID: string,
+  GOOGLE_CLIENT_SECRET: string,
+  GOOGLE_REDIRECT_URL: string,
   GITHUB_CLIENT_ID: string,
   GITHUB_CLIENT_SECRET: string,
 
@@ -78,6 +82,87 @@ type GitHubLoginResponse = {
   access_token: string,
   error?: string, // TODO check if `error` is really string
 };
+
+app.get("/google", async (c) => {
+  if (!c.env.GOOGLE_CLIENT_ID || !c.env.GOOGLE_CLIENT_SECRET || !c.env.GOOGLE_REDIRECT_URL) {
+    c.text("Login with Google is not supported on this identity server", 404);
+    return;
+  }
+
+  const oauth2Client = new google.auth.OAuth2(
+    c.env.GOOGLE_CLIENT_ID,
+    c.env.GOOGLE_CLIENT_SECRET,
+    c.env.GOOGLE_REDIRECT_URL,
+  );
+
+  const authorizationUrl = oauth2Client.generateAuthUrl({
+    access_type: "online",
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "OpenID",
+    ],
+    include_granted_scopes: true,
+  });
+
+  c.redirect(authorizationUrl, 301);
+});
+
+app.post("/oauth2callback", async (c) => {
+  if (!c.env.GOOGLE_CLIENT_ID || !c.env.GOOGLE_CLIENT_SECRET || !c.env.GOOGLE_REDIRECT_URL) {
+    c.text("Login with Google is not supported on this identity server", 404);
+    return;
+  }
+
+  const oauth2Client = new google.auth.OAuth2(
+    c.env.GOOGLE_CLIENT_ID,
+    c.env.GOOGLE_CLIENT_SECRET,
+    c.env.GOOGLE_REDIRECT_URL,
+  );
+
+  let userCredential = null;
+
+  const { code, error } = c.req.query();
+
+  if (error) {
+    console.error(`Error: ${error}`);
+    c.text("Failed to login with Google."); // TODO return the cause of failure in JSON
+    return;
+  } else {
+    const { tokens } = await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(tokens);
+
+    /**
+     * Save credential to the global variable in case access token was refreshed.
+     * TODO: In a production app, you likely want to save the refresh token in a secure persistent database instead.
+     */
+    userCredential = tokens;
+  }
+});
+
+app.post("/revoke", async (c) => {
+  if (!c.env.GOOGLE_CLIENT_ID || !c.env.GOOGLE_CLIENT_SECRET || !c.env.GOOGLE_REDIRECT_URL) {
+    c.text("Login with Google is not supported on this identity server", 404);
+    return;
+  }
+
+  // TODO call userCredential from DB
+  const postData = `token=${userCredential.access_token}`;
+  const res = await fetch("https://oauth2.googleapis.com/revoke", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Length": Buffer.byteLength(postData).toString(),
+    },
+    body: postData,
+  });
+
+  if (res.status < 400) {
+    c.text("Succeeded to revoke"); // TODO return better data
+  } else {
+    c.text("Failed to revoke.");
+  }
+});
 
 app.post("/api/github", async (c) => {
   if (!c.env.GITHUB_CLIENT_ID || !c.env.GITHUB_CLIENT_SECRET) {
