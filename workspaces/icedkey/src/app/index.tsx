@@ -1,4 +1,4 @@
-import { Hono } from "hono";
+import { Hono, type Context } from "hono";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 import { google } from "googleapis";
@@ -12,6 +12,11 @@ type HonoEnv = {
   GITHUB_CLIENT_SECRET: string,
 
   d1: D1Database,
+};
+
+const setCommonApiHeaders = (c: Context<{ Bindings: HonoEnv }>): void => {
+  // c.header("Access-Control-Allow-Credentials", "true"); // Required for Cookies?
+  c.header("Access-Control-Allow-Origin", "*"); // TODO set allowedOrigin values
 };
 
 const app = new Hono<{ Bindings: HonoEnv }>();
@@ -40,7 +45,7 @@ app.onError((err, c) => {
 
 // CORS pre-flight request
 app.options("*", (c) => {
-  c.header("Access-Control-Allow-Origin", "*");
+  setCommonApiHeaders(c);
   c.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   c.header("Access-Control-Allow-Headers", "Content-Type");
   c.status(204);
