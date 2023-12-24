@@ -1,0 +1,7 @@
+name = "icedkey-instance"
+compatibility_date = "2023-12-18"
+account_id = "6c6da1080173b4e8512770e8f9309068"
+zone_id = "247a635bf5a6091a2667ed8c2fa082ec"
+workers_dev = false
+type = "typescript"
+route = { pattern = "icedkey-demo.phanective.org/*", custom_domain = true }
