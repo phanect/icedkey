@@ -12,6 +12,7 @@
     "workspaces/*"
   ],
   "scripts": {
+    "build": "lerna run build",
     "lint": "tsc --noEmit && eslint --ext=.js,.jsx,.ts,.tsx,.json .",
     "release": "lerna run release",
     "prebuild": "esno ./scripts/postbuild.ts"

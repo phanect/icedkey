@@ -26,7 +26,20 @@
     "url": "https://github.com/phanect/icedkey/issues"
   },
   "type": "module",
+  "main": "./dist/configurator/configurator.cjs",
+  "module": "./dist/configurator/configurator.js",
+  "types": "./dist/configurator/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/configurator/configurator.js",
+        "types": "./dist/configurator/types/index.d.ts"
+      },
+      "require": "./dist/configurator/configurator.cjs"
+    }
+  },
   "scripts": {
+    "build": "vite build",
     "release": "npm publish --access public --non-interactive"
   },
   "dependencies": {
@@ -38,6 +51,7 @@
     "@hono/vite-dev-server": "^0.3.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.6.4",
     "wrangler": "^3.21.0"
   },
   "engines": {
