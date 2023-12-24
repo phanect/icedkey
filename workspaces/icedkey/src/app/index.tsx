@@ -1,6 +1,11 @@
 import { Hono } from "hono";
 
-const app = new Hono();
+type HonoEnv = {
+  GITHUB_CLIENT_ID: string,
+  GITHUB_CLIENT_SECRET: string,
+};
+
+const app = new Hono<{ Bindings: HonoEnv }>();
 
 app.notFound((c) => c.render(
   <>
@@ -32,6 +37,9 @@ app.options("*", (c) => {
   c.status(204);
   return c.body("");
 });
+
+// redirect GET requests to the OAuth login page on github.com
+app.get("*", (c) => c.redirect(c.env.GITHUB_CLIENT_ID ? `https://github.com/login/oauth/authorize?client_id=${c.env.GITHUB_CLIENT_ID}` : "/", 302));
 
 app.get("/", (c) => c.render(
   <>
