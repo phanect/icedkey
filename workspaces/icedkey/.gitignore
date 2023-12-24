@@ -8,8 +8,16 @@
 # User-provided assets
 /src/app/user-assets/
 
+# Types for environment variables used on Vite
+/src/env.d.ts
+
 #
 # Cloudflare / Wrangler
 #
 .wrangler
 .dev.vars
+
+#
+# Other tools
+#
+.env
