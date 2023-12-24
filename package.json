@@ -12,7 +12,13 @@
     "workspaces/*"
   ],
   "scripts": {
+    "lint": "tsc --noEmit && eslint --ext=.js,.jsx,.ts,.tsx,.json .",
     "release": "lerna run release"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-phanective": "latest",
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.x",
