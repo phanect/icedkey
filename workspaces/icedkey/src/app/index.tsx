@@ -1,5 +1,8 @@
 import { Hono } from "hono";
+import { eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/d1";
 import { google } from "googleapis";
+import { users as usersModel } from "./backend/models";
 
 type HonoEnv = {
   GOOGLE_CLIENT_ID: string,
@@ -114,6 +117,8 @@ app.post("/oauth2callback", async (c) => {
     return;
   }
 
+  const db = drizzle(c.env.d1, { schema: { usersModel }});
+
   const oauth2Client = new google.auth.OAuth2(
     c.env.GOOGLE_CLIENT_ID,
     c.env.GOOGLE_CLIENT_SECRET,
@@ -128,16 +133,36 @@ app.post("/oauth2callback", async (c) => {
     console.error(`Error: ${error}`);
     c.text("Failed to login with Google."); // TODO return the cause of failure in JSON
     return;
-  } else {
-    const { tokens } = await oauth2Client.getToken(code);
-    oauth2Client.setCredentials(tokens);
-
-    /**
-     * Save credential to the global variable in case access token was refreshed.
-     * TODO: In a production app, you likely want to save the refresh token in a secure persistent database instead.
-     */
-    userCredential = tokens;
   }
+
+  const { tokens } = await oauth2Client.getToken(code);
+  oauth2Client.setCredentials(tokens);
+
+  const googleAuth = google.oauth2({
+    version: "v2",
+    auth: oauth2Client,
+  });
+
+  const { data: googleUser } = await googleAuth.userinfo.get();
+
+  if (googleUser.email) {
+    const ikUser = (await db.select().from(usersModel).where(eq(usersModel.email, googleUser.email)).limit(1))[0];
+
+    if (ikUser) {
+      // TODO
+    } else { // If not found from DB, sign up.
+      // TODO
+    }
+  } else {
+    // TODO メールアドレスを登録させる
+  }
+
+
+  /**
+   * Save credential to the global variable in case access token was refreshed.
+   * TODO: In a production app, you likely want to save the refresh token in a secure persistent database instead.
+   */
+  userCredential = tokens;
 });
 
 app.post("/revoke", async (c) => {
